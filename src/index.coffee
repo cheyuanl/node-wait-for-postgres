@@ -6,8 +6,8 @@ durations = require 'durations'
 config = require './config'
 
 getConnection = (uri, connectTimeout) ->
+  client = new pg.Client uri
   new P (resolve, reject) ->
-    client = new pg.Client uri
     client.connect (error) ->
       if error? then reject error else resolve client
   .timeout connectTimeout
